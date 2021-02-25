@@ -1,4 +1,4 @@
-package console
+package colorize
 
 import (
 	"fmt"
