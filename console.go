@@ -2,30 +2,62 @@ package console
 
 import (
 	"fmt"
-	"os"
 )
 
 // reference
 // https://en.wikipedia.org/wiki/ANSI_escape_code
+// https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 
 // Style -> Define type color
 type Style uint8
+
+// Console -> Define the Console object
+type Console struct {
+}
+
+// position -> Struct used to keep track of the cursor position
+type position struct {
+	X, Y uint8
+}
 
 // Reset const
 const (
 	Reset Style = 0
 )
 
-// String constant
+// String constants - prefixes
 const (
-	prefix       string = "\u001b["
-	rgbFgPrefix  string = "\u001b[38;5;"
-	rgbBgPrefix  string = "\u001b[48;5;"
-	normalSuffix string = "m"
+	prefix            string = "\u001b["
+	rgbFgPrefix       string = prefix + "38;5;"
+	rgbBgPrefix       string = prefix + "48;5;"
+	truecolorFgPrefix string = prefix + "38;2;"
+	truecolorBgPrefix string = prefix + "48;2;"
+)
+
+// String constants - suffixes
+const (
+	suffix       string = "m"
 	brightSuffix string = ";1m"
 )
 
-// Mask constant
+// String constants - cursor
+const (
+	moveHome         string = "H"
+	moveUp           string = "1A"
+	moveDown         string = "1B"
+	moveLeft         string = "1D"
+	moveRight        string = "1C"
+	moveNewLine      string = "1E"
+	movePreviousLine string = "1F"
+)
+
+// String constants - erase
+const (
+	clearScreen string = prefix + "2J"
+	clearLine   string = prefix + "2K"
+)
+
+// Mask constants
 const (
 	brightnessMask Style = 0b1000000
 	decorationMask Style = 0b10000000
@@ -43,7 +75,7 @@ const (
 	FgWhite
 )
 
-// foreground bright colors 30-37 -> ???
+// foreground bright colors 30-37 -> 94-101
 const (
 	FgBrightBlack Style = iota + 30 + brightnessMask
 	FgBrightRed
@@ -106,14 +138,13 @@ func getValue(c Style) (s string) {
 func getSuffix(c Style) (s string) {
 	// bit masking to get suffix
 	if c&brightnessMask == 0 || c&decorationMask == 0 {
-		return normalSuffix
+		return suffix
 	}
 	return brightSuffix
 }
 
 func createStyleString(c Style) (s string) {
 	s = ""
-
 	s += prefix
 	s += getValue(c)
 	s += getSuffix(c)
@@ -126,6 +157,21 @@ func createRGBString(r, g, b uint8) (s string) {
 	return
 }
 
+func createTruecolorString(r, g, b uint8) (s string) {
+	s = fmt.Sprintf("%d;%d;%d", r, g, b)
+	return
+}
+
+func applyStyle(style string) (e error) {
+	_, e = fmt.Print(style)
+	return e
+}
+
+func createCursorXYString(x, y uint8) (s string) {
+	s = fmt.Sprintf("%d;%d;H", y, x)
+	return
+}
+
 // SetStyle -> set text and background colors
 func SetStyle(colors ...Style) {
 	s := ""
@@ -133,7 +179,7 @@ func SetStyle(colors ...Style) {
 		s += createStyleString(c)
 	}
 
-	fmt.Fprint(os.Stdout, s)
+	applyStyle(s)
 }
 
 // SetFgRGB -> set text color via rgb
@@ -141,14 +187,88 @@ func SetFgRGB(r, g, b uint8) {
 	s := ""
 	s += rgbFgPrefix
 	s += createRGBString(r, g, b)
-	s += normalSuffix
+	s += suffix
 
-	fmt.Fprint(os.Stdout, s)
+	applyStyle(s)
 }
 
-// SetBgRgb -> set background color via rgb
+// SetBgRGB -> set background color via rgb
+func SetBgRGB(r, g, b uint8) {
+	s := ""
+	s += rgbBgPrefix
+	s += createRGBString(r, g, b)
+	s += suffix
+
+	applyStyle(s)
+}
+
+// SetFgTruecolor -> set text color via rgb (true color)
+func SetFgTruecolor(r, g, b uint8) {
+	s := ""
+	s += truecolorFgPrefix
+	s += createTruecolorString(r, g, b)
+	s += suffix
+
+	applyStyle(s)
+}
+
+// SetBgTruecolor -> set background color via rgb (true color)
+func SetBgTruecolor(r, g, b uint8) {
+	s := ""
+	s += truecolorBgPrefix
+	s += createTruecolorString(r, g, b)
+	s += suffix
+
+	applyStyle(s)
+}
 
 // ResetStyle -> reset color and decoration to default
 func ResetStyle() {
-	fmt.Fprint(os.Stdout, createStyleString(Reset))
+	s := createStyleString(Reset)
+	applyStyle(s)
+}
+
+// MoveCursorToXY -> Move cursor to a x,y position
+func MoveCursorToXY(x, y uint8) {
+	s := ""
+	s += prefix
+	s += createCursorXYString(x, y)
+	applyStyle(s)
+}
+
+// Clear -> clears the console (everything) using the current style
+func Clear() {
+	applyStyle(clearScreen)
+}
+
+// ClearLine -> clears the current console line using the current style
+func ClearLine() {
+	applyStyle(clearLine)
+}
+
+// MoveCursorBy -> moves the cursor by x, y relative to current position
+func MoveCursorBy(x, y int8) {
+	var i, j int8
+	var s string
+	s = ""
+
+	for i = 0; i < x; i++ {
+		s += prefix
+		if x > 0 {
+			s += moveRight
+		} else {
+			s += moveLeft
+		}
+	}
+
+	for j = 0; j < y; j++ {
+		s += prefix
+		if y > 0 {
+			s += moveDown
+		} else {
+			s += moveUp
+		}
+	}
+
+	applyStyle(s)
 }
