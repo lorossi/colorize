@@ -6,19 +6,9 @@ import (
 
 // reference
 // https://en.wikipedia.org/wiki/ANSI_escape_code
-// https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797
 
 // Style -> Define type color
 type Style uint8
-
-// Console -> Define the Console object
-type Console struct {
-}
-
-// position -> Struct used to keep track of the cursor position
-type position struct {
-	X, Y uint8
-}
 
 // Reset const
 const (
@@ -124,6 +114,7 @@ const (
 	Strike
 )
 
+// get constant value by masking
 func getValue(c Style) (s string) {
 	// bit masking to get value
 	if c&decorationMask != 0 {
@@ -135,6 +126,7 @@ func getValue(c Style) (s string) {
 	return fmt.Sprint(c)
 }
 
+// get suffix to end style string
 func getSuffix(c Style) (s string) {
 	// bit masking to get suffix
 	if c&brightnessMask == 0 || c&decorationMask == 0 {
@@ -143,6 +135,7 @@ func getSuffix(c Style) (s string) {
 	return brightSuffix
 }
 
+// create string from constant
 func createStyleString(c Style) (s string) {
 	s = ""
 	s += prefix
@@ -152,21 +145,25 @@ func createStyleString(c Style) (s string) {
 	return s
 }
 
+// create string from rgb
 func createRGBString(r, g, b uint8) (s string) {
 	s = fmt.Sprint(16 + r/51*36 + g/51*6 + b/51)
 	return
 }
 
+// create string from truecolor
 func createTruecolorString(r, g, b uint8) (s string) {
 	s = fmt.Sprintf("%d;%d;%d", r, g, b)
 	return
 }
 
+// finally apply the style
 func applyStyle(style string) (e error) {
 	_, e = fmt.Print(style)
 	return e
 }
 
+// create string to move cursor to xy
 func createCursorXYString(x, y uint8) (s string) {
 	s = fmt.Sprintf("%d;%d;H", y, x)
 	return
