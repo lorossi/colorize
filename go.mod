@@ -1,3 +1,3 @@
-module github.com/lorossi/console
+module github.com/lorossi/more-colors
 
 go 1.16
