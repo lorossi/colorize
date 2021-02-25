@@ -1,4 +1,4 @@
-# More Colors
+# Colorize
 
 Simple Go package to have colored and formatted text inside your terminal
 
