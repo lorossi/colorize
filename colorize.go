@@ -128,11 +128,10 @@ func getValue(c Style) (s string) {
 
 // get suffix to end style string
 func getSuffix(c Style) (s string) {
-	// bit masking to get suffix
-	if c&brightnessMask == 0 || c&decorationMask == 0 {
-		return suffix
+	if c&brightnessMask != 0 {
+		return brightSuffix
 	}
-	return brightSuffix
+	return suffix
 }
 
 // create string from constant
