@@ -74,7 +74,7 @@ const (
 	FgBrightBlue
 	FgBrightMagenta
 	FgBrightCyan
-	FgBrightWBright
+	FgBrightWhite
 )
 
 // background colors 40-47 -> 40-47
