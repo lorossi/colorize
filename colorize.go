@@ -98,7 +98,7 @@ const (
 	BgBrightBlue
 	BgBrightMagenta
 	BgBrightCyan
-	BgBrightWBright
+	BgBrightWhite
 )
 
 // decorations 1-9 -> 129-137
@@ -165,6 +165,23 @@ func applyStyle(style string) (e error) {
 // create string to move cursor to xy
 func createCursorXYString(x, y uint8) (s string) {
 	s = fmt.Sprintf("%d;%d;H", y, x)
+	return
+}
+
+// create styled text. This function both takes the style and the string.
+func styledText(color Style, text ...interface{}) (formatted string) {
+	formatted = createStyleString(color)
+	// iterate throught each interface item
+	for _, t := range text {
+		// try to convert interface to string
+		s := fmt.Sprint(t)
+		// if so, remove starting and leading square brackets
+		if len(s) > 1 {
+			formatted += s[1 : len(s)-1]
+		}
+	}
+	// add reset character
+	formatted += createStyleString(Reset)
 	return
 }
 
@@ -267,172 +284,4 @@ func MoveCursorBy(x, y int8) {
 	}
 
 	applyStyle(s)
-}
-
-// List of functions for fast styling
-// Normal colors
-
-// Red text
-func Red(s string) {
-	SetStyle(FgRed)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// Green text
-func Green(s string) {
-	SetStyle(FgGreen)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// Yellow text
-func Yellow(s string) {
-	SetStyle(FgYellow)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// Blue text
-func Blue(s string) {
-	SetStyle(FgBlue)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// Magenta text
-func Magenta(s string) {
-	SetStyle(FgMagenta)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// Cyan text
-func Cyan(s string) {
-	SetStyle(FgCyan)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// White text
-func White(s string) {
-	SetStyle(FgWhite)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// Bright colors
-
-// BrightRed -> Red bright text
-func BrightRed(s string) {
-	SetStyle(FgBrightRed)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// BrightGreen -> Green bright text
-func BrightGreen(s string) {
-	SetStyle(FgBrightGreen)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// BrightYellow -> Yellow bright text
-func BrightYellow(s string) {
-	SetStyle(FgBrightYellow)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// BrightBlue -> Blue bright text
-func BrightBlue(s string) {
-	SetStyle(FgBrightBlue)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// BrightMagenta -> Magenta bright text
-func BrightMagenta(s string) {
-	SetStyle(FgBrightMagenta)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// BrightCyan -> Cyan bright text
-func BrightCyan(s string) {
-	SetStyle(FgBrightCyan)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// BrightWhite -> White bright text
-func BrightWhite(s string) {
-	SetStyle(FgBrightWhite)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// Text styling
-
-// BoldText -> print text in bold
-func BoldText(s string) {
-	SetStyle(Bold)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// FaintText -> print text in faint mode
-func FaintText(s string) {
-	SetStyle(Faint)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// ItalicText -> print text in italic
-func ItalicText(s string) {
-	SetStyle(Italic)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// UnderlineText -> print text with underline
-func UnderlineText(s string) {
-	SetStyle(Bold)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// SlowBlinkText -> print text with slow blink effect
-func SlowBlinkText(s string) {
-	SetStyle(SlowBlink)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// RapidBlinkText -> print text with rapid blink effect
-func RapidBlinkText(s string) {
-	SetStyle(RapidBlink)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// InvertText -> print text with inverted effect
-func InvertText(s string) {
-	SetStyle(Bold)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// HideText -> print text with hide effect
-func HideText(s string) {
-	SetStyle(Hide)
-	fmt.Print(s)
-	ResetStyle()
-}
-
-// StrikeText -> print text with Strike effect
-func StrikeText(s string) {
-	SetStyle(Strike)
-	fmt.Print(s)
-	ResetStyle()
 }
