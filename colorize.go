@@ -7,7 +7,7 @@ import (
 // reference
 // https://en.wikipedia.org/wiki/ANSI_escape_code
 
-// Style -> Define type color
+// Style -> Define type used in all the styling options
 type Style uint8
 
 // Reset const
