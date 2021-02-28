@@ -2,9 +2,9 @@
 
 Simple Go package to have colored and formatted text inside your terminal
 
-## DOCS
+## Examples
 
-Todo
+## DOCS
 
 ## License
 
