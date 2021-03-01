@@ -1,9 +1,5 @@
 package colorize
 
-import (
-	"fmt"
-)
-
 // reference
 // https://en.wikipedia.org/wiki/ANSI_escape_code
 
@@ -114,75 +110,36 @@ const (
 	Strike
 )
 
-// get constant value by masking
-func getValue(c Style) (s string) {
-	// bit masking to get value
-	if c&decorationMask != 0 {
-		return fmt.Sprint(c - decorationMask)
-	} else if c&brightnessMask != 0 {
-		return fmt.Sprint(c - brightnessMask)
-	}
+// HSLtoRGB -> converts HSL to RGB values
+func HSLtoRGB(h, s, l uint8) (r, g, b uint8) {
+	var R, G, B float64
 
-	return fmt.Sprint(c)
-}
+	H := float64(h) / 255
+	S := float64(s) / 255
+	L := float64(l) / 255
 
-// get suffix to end style string
-func getSuffix(c Style) (s string) {
-	if c&brightnessMask != 0 {
-		return brightSuffix
-	}
-	return suffix
-}
-
-// create string from constant
-func createStyleString(c Style) (s string) {
-	s = ""
-	s += prefix
-	s += getValue(c)
-	s += getSuffix(c)
-
-	return s
-}
-
-// create string from rgb
-func createRGBString(r, g, b uint8) (s string) {
-	s = fmt.Sprint(16 + r/51*36 + g/51*6 + b/51)
-	return
-}
-
-// create string from truecolor
-func createTruecolorString(r, g, b uint8) (s string) {
-	s = fmt.Sprintf("%d;%d;%d", r, g, b)
-	return
-}
-
-// finally apply the style
-func applyStyle(style string) (e error) {
-	_, e = fmt.Print(style)
-	return e
-}
-
-// create string to move cursor to xy
-func createCursorXYString(x, y uint8) (s string) {
-	s = fmt.Sprintf("%d;%d;H", y, x)
-	return
-}
-
-// create styled text. This function both takes the style and the string.
-func styledText(color Style, text ...interface{}) (formatted string) {
-	formatted = createStyleString(color)
-	// iterate throught each interface item
-	for _, t := range text {
-		// try to convert interface to string
-		s := fmt.Sprint(t)
-		// if so, remove starting and leading square brackets
-		if len(s) > 1 {
-			formatted += s[1 : len(s)-1]
+	if S == 0 {
+		R = L * 255
+		G = L * 255
+		B = L * 255
+	} else {
+		var c1, c2 float64
+		if L < 0.5 {
+			c2 = L * (1 + S)
+		} else {
+			c2 = (L + S) - (L * S)
 		}
+		c1 = 2*L - c2
+
+		R = 255 * hueTorgb(c1, c2, H+1/3)
+		G = 255 * hueTorgb(c1, c2, H)
+		B = 255 * hueTorgb(c1, c2, H-1/3)
 	}
-	// add reset character
-	formatted += createStyleString(Reset)
-	return
+
+	r = uint8(R / 255)
+	g = uint8(G / 255)
+	b = uint8(B / 255)
+	return r, g, b
 }
 
 // SetStyle -> set text and background colors
@@ -195,7 +152,13 @@ func SetStyle(colors ...Style) {
 	applyStyle(s)
 }
 
-// SetFgRGB -> set text color via rgb
+// ResetStyle -> reset color and decoration to default
+func ResetStyle() {
+	s := createStyleString(Reset)
+	applyStyle(s)
+}
+
+// SetFgRGB -> set text color via rgb. RGB in range 0-255, for a total output of 256 colors
 func SetFgRGB(r, g, b uint8) {
 	s := ""
 	s += rgbFgPrefix
@@ -205,7 +168,7 @@ func SetFgRGB(r, g, b uint8) {
 	applyStyle(s)
 }
 
-// SetBgRGB -> set background color via rgb
+// SetBgRGB -> set background color via rgb. RGB in range 0-255, for a total output of 256 colors
 func SetBgRGB(r, g, b uint8) {
 	s := ""
 	s += rgbBgPrefix
@@ -215,7 +178,7 @@ func SetBgRGB(r, g, b uint8) {
 	applyStyle(s)
 }
 
-// SetFgTruecolor -> set text color via rgb (true color)
+// SetFgTruecolor -> set text color via rgb (true color). RGB in range 0-255, for a total output of 16777216 colors
 func SetFgTruecolor(r, g, b uint8) {
 	s := ""
 	s += truecolorFgPrefix
@@ -225,7 +188,7 @@ func SetFgTruecolor(r, g, b uint8) {
 	applyStyle(s)
 }
 
-// SetBgTruecolor -> set background color via rgb (true color)
+// SetBgTruecolor -> set background color via rgb (true color). RGB in range 0-255, for a total output of 16777216 colors
 func SetBgTruecolor(r, g, b uint8) {
 	s := ""
 	s += truecolorBgPrefix
@@ -235,10 +198,26 @@ func SetBgTruecolor(r, g, b uint8) {
 	applyStyle(s)
 }
 
-// ResetStyle -> reset color and decoration to default
-func ResetStyle() {
-	s := createStyleString(Reset)
-	applyStyle(s)
+// SetFgTruecolorHSL -> set text color via hsl (true color). hsl in range 0-255, for a total output of 16777216 colors
+func SetFgTruecolorHSL(h, s, l uint8) {
+	r, g, b := HSLtoRGB(h, s, l)
+	style := ""
+	style += truecolorFgPrefix
+	style += createTruecolorString(r, g, b)
+	style += suffix
+
+	applyStyle(style)
+}
+
+// SetBgTruecolorHSL -> set background color via hsl (true color). hsl in range 0-255, for a total output of 16777216 colors
+func SetBgTruecolorHSL(h, s, l uint8) {
+	r, g, b := HSLtoRGB(h, s, l)
+	style := ""
+	style += truecolorBgPrefix
+	style += createTruecolorString(r, g, b)
+	style += suffix
+
+	applyStyle(style)
 }
 
 // MoveCursorToXY -> Move cursor to a x,y position
