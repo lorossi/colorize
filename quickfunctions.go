@@ -193,7 +193,17 @@ func HideStyle(text ...interface{}) (formatted string) {
 	return styledText(Hide, text)
 }
 
-// StrikeStyle -> print text with Strike effect
+// StrikeStyle -> print text with strike effect
 func StrikeStyle(text ...interface{}) (formatted string) {
 	return styledText(Strike, text)
+}
+
+// FramedStyle -> print text with framed effect - NOT WIDELY SUPPORTED
+func FramedStyle(text ...interface{}) (formatted string) {
+	return styledText(Framed, text)
+}
+
+// EncircledStyle -> print text with encircled effect - NOT WIDELY SUPPORTED
+func EncircledStyle(text ...interface{}) (formatted string) {
+	return styledText(Encircled, text)
 }

@@ -108,9 +108,11 @@ const (
 	Invert
 	Hide
 	Strike
+	Framed    Style = 51 + decorationMask // Not widely supported
+	Encircled Style = 52 + decorationMask // Not widely supported
 )
 
-// HSLtoRGB -> converts HSL to RGB values
+// HSLtoRGB -> converts HSL (range 0-255) to RGB (range 0-255) values
 func HSLtoRGB(h, s, l uint8) (r, g, b uint8) {
 	var R, G, B float64
 
@@ -119,9 +121,9 @@ func HSLtoRGB(h, s, l uint8) (r, g, b uint8) {
 	L := float64(l) / 255
 
 	if S == 0 {
-		R = L * 255
-		G = L * 255
-		B = L * 255
+		R = L
+		G = L
+		B = L
 	} else {
 		var c1, c2 float64
 		if L < 0.5 {
@@ -131,14 +133,34 @@ func HSLtoRGB(h, s, l uint8) (r, g, b uint8) {
 		}
 		c1 = 2*L - c2
 
-		R = 255 * hueTorgb(c1, c2, H+1/3)
-		G = 255 * hueTorgb(c1, c2, H)
-		B = 255 * hueTorgb(c1, c2, H-1/3)
+		hueToRgb := func(v1, v2, v3 float64) (v float64) {
+			if v3 < 0 {
+				v3++
+			} else if v3 > 1 {
+				v3--
+			}
+
+			if 6.0*v3 < 1 {
+				return v1 + (v2-v1)*6.0*v3
+			}
+			if 2.0*v3 < 1 {
+				return v2
+			}
+			if 3.0*v3 < 1 {
+				return v1 + (v2-v1)*(2.0/3.0-v3)*6.0
+			}
+			return v1
+		}
+
+		R = hueToRgb(c1, c2, H+(1.0/3.0))
+		G = hueToRgb(c1, c2, H)
+		B = hueToRgb(c1, c2, H-(1.0/3.0))
 	}
 
-	r = uint8(R / 255)
-	g = uint8(G / 255)
-	b = uint8(B / 255)
+	r = uint8(R * 255)
+	g = uint8(G * 255)
+	b = uint8(B * 255)
+
 	return r, g, b
 }
 

@@ -74,23 +74,3 @@ func styledText(color Style, text ...interface{}) (formatted string) {
 	formatted += createStyleString(Reset)
 	return
 }
-
-// get rgb value from hue
-func hueTorgb(v1, v2, v3 float64) (v float64) {
-	if v3 < 0 {
-		v3++
-	} else if v3 > 1 {
-		v3--
-	}
-
-	if 6*v3 < 1 {
-		return v1 + (v2-v1)*6*v3
-	}
-	if 2*v3 < 1 {
-		return v2
-	}
-	if 3*v3 < 2 {
-		return v1 + (v2-v1)*(2/3-v3)*6
-	}
-	return v1
-}
