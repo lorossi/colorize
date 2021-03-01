@@ -5,37 +5,37 @@ package colorize
 
 // Normal colors
 
-// Red text
+// Red -> Red text
 func Red(text ...interface{}) (formatted string) {
 	return styledText(FgRed, text)
 }
 
-// Green text
+// Green -> Green text
 func Green(text ...interface{}) (formatted string) {
 	return styledText(FgGreen, text)
 }
 
-// Yellow text
+// Yellow -> Yellow text
 func Yellow(text ...interface{}) (formatted string) {
 	return styledText(FgYellow, text)
 }
 
-// Blue text
+// Blue -> blue text
 func Blue(text ...interface{}) (formatted string) {
 	return styledText(FgBlue, text)
 }
 
-// Magenta text
+// Magenta -> Magenta text
 func Magenta(text ...interface{}) (formatted string) {
 	return styledText(FgMagenta, text)
 }
 
-// Cyan text
+// Cyan -> Cyan text
 func Cyan(text ...interface{}) (formatted string) {
 	return styledText(FgCyan, text)
 }
 
-// White text
+// White -> White text
 func White(text ...interface{}) (formatted string) {
 	return styledText(FgWhite, text)
 }
