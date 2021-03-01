@@ -45,7 +45,7 @@ fmt.Println("RED!")
 colorize.ResetStyle()
 ```
 
-*Never foget to reset the style via the `ResetStyle()` function!*
+**Never foget to reset the style via the `ResetStyle()` function!**
 
 Set a text color, background color or style with the quick functions:
 
@@ -57,7 +57,8 @@ fmt.Println(colorize.Bold("This is so bold!"))
 
 ## Docs
 
-[Read some documentation here.](/docs.md) [Generated using Gomarkdoc](https://github.com/princjef/gomarkdoc)
+[Read some documentation here.](/DOCS.md) 
+[Generated using Gomarkdoc](https://github.com/princjef/gomarkdoc)
 
 ## License
 
