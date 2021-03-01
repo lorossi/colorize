@@ -1,3 +1,4 @@
+// Package colorize is a simple Go package to have colored and formatted text inside your terminal
 package colorize
 
 // reference
@@ -112,8 +113,8 @@ const (
 	Encircled Style = 52 + decorationMask // Not widely supported
 )
 
-// HSLtoRGB -> converts HSL (range 0-255) to RGB (range 0-255) values
-func HSLtoRGB(h, s, l uint8) (r, g, b uint8) {
+// hslTOrgb -> converts HSL (range 0-255) to RGB (range 0-255) values
+func hslTOrgb(h, s, l uint8) (r, g, b uint8) {
 	var R, G, B float64
 
 	H := float64(h) / 255
@@ -222,7 +223,7 @@ func SetBgTruecolor(r, g, b uint8) {
 
 // SetFgTruecolorHSL -> set text color via hsl (true color). hsl in range 0-255, for a total output of 16777216 colors
 func SetFgTruecolorHSL(h, s, l uint8) {
-	r, g, b := HSLtoRGB(h, s, l)
+	r, g, b := hslTOrgb(h, s, l)
 	style := ""
 	style += truecolorFgPrefix
 	style += createTruecolorString(r, g, b)
@@ -233,7 +234,7 @@ func SetFgTruecolorHSL(h, s, l uint8) {
 
 // SetBgTruecolorHSL -> set background color via hsl (true color). hsl in range 0-255, for a total output of 16777216 colors
 func SetBgTruecolorHSL(h, s, l uint8) {
-	r, g, b := HSLtoRGB(h, s, l)
+	r, g, b := hslTOrgb(h, s, l)
 	style := ""
 	style += truecolorBgPrefix
 	style += createTruecolorString(r, g, b)

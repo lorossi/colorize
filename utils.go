@@ -1,4 +1,3 @@
-// Package colorize -> a simple Go package to have colored and formatted text inside your terminal
 package colorize
 
 import "fmt"
