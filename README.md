@@ -58,6 +58,7 @@ fmt.Println(colorize.Bold("This is so bold!"))
 ## Docs
 
 [Read some documentation here.](/DOCS.md) 
+
 [Generated using Gomarkdoc](https://github.com/princjef/gomarkdoc)
 
 ## License
