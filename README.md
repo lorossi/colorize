@@ -8,6 +8,7 @@
    <img src="https://img.shields.io/github/repo-size/lorossi/colorize?style=flat-square">
    <img src="https://img.shields.io/maintenance/yes/2021?style=flat-square">
    <img src="https://img.shields.io/github/last-commit/lorossi/colorize/main?style=flat-square">
+   <img src="https://img.shields.io/github/v/release/lorossi/colorize?style=flat-square">
 </p>
 
 <p align="center">
