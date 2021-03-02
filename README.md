@@ -1,6 +1,16 @@
 # Colorize
 
-Simple Go package to have colored and formatted text inside your terminal
+<p align="center">
+  <img src="/examples/readmedemo.png">  
+</p>
+
+<p align="center">
+   <img src="https://img.shields.io/github/repo-size/lorossi/colorize?style=flat-square">
+   <img src="https://img.shields.io/maintenance/yes/2021?style=flat-square">
+   <img src="https://img.shields.io/github/last-commit/lorossi/colorize/main?style=flat-square">
+</p>
+
+Colorize is a simple and handy Go package that lets you use colors and styling in your console!
 
 ## Examples
 
@@ -189,7 +199,6 @@ There are currently **3** go files:
 1. `colorize.go` is the main file, containing the public (exported) functions.
 2. `quickfunctions.go` is the file containing the so called *(by me, at least)* "quick functions" to rapidly create colored or styled text.
 3. `utils.go` is the file containing all the private (unexported) functions.
-
 
 ## License
 

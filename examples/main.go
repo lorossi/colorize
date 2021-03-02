@@ -8,9 +8,14 @@ import (
 )
 
 func main() {
+	fmt.Println("Now printing rainbow")
 	rainbow()
+	fmt.Println("Now printing advertising")
 	advertising()
+	fmt.Println("Now printing Christmas tree")
 	christmasTree()
+	fmt.Println("Now printing README demo")
+	readmeDemo()
 }
 
 func rainbow() {
@@ -104,5 +109,50 @@ func christmasTree() {
 		fmt.Println(" ")
 		colorize.ResetStyle()
 	}
+	fmt.Println()
+}
+
+func readmeDemo() {
+	fmt.Println()
+	colorize.MoveCursorBy(20, 0)
+	colorize.SetStyle(colorize.FgRed, colorize.Bold)
+	fmt.Println("Colorize")
+	colorize.ResetStyle()
+	colorize.MoveCursorBy(7, 0)
+	colorize.SetStyle(colorize.FgGreen, colorize.Underline)
+	fmt.Println("add colored output to your console")
+	colorize.MoveCursorBy(9, 0)
+	fmt.Println("100% compatible with every os!")
+	colorize.ResetStyle()
+
+	// print line of colors
+	fmt.Println()
+	for i := 0; i < 48; i++ {
+		colorize.SetBgTruecolorHSL(uint8(i*255/48), 255, 127)
+		fmt.Print(" ")
+		colorize.ResetStyle()
+	}
+	fmt.Println()
+
+	// print colored squares
+	fmt.Println()
+	for i := 0; i < 48; i++ {
+		colorize.SetFgTruecolorHSL(uint8(255-i*255/48), 255, 127)
+		fmt.Print("■")
+		colorize.ResetStyle()
+	}
+	fmt.Println()
+
+	fmt.Println()
+	colorize.MoveCursorBy(6, 0)
+	colorize.SetStyle(colorize.FgRed, colorize.Strike)
+	fmt.Println("Boring, complex, convoluted packages")
+	colorize.ResetStyle()
+	colorize.MoveCursorBy(6, 0)
+	colorize.SetStyle(colorize.FgBrightGreen, colorize.Bold)
+	fmt.Println("Easy to use and documented colorize!")
+	colorize.ResetStyle()
+	fmt.Println()
+
 	fmt.Println()
 }
