@@ -20,7 +20,7 @@ func Yellow(text ...interface{}) (formatted string) {
 	return styledText(FgYellow, text)
 }
 
-// Blue -> blue text
+// Blue -> Blue text
 func Blue(text ...interface{}) (formatted string) {
 	return styledText(FgBlue, text)
 }
@@ -79,37 +79,37 @@ func BrightWhite(text ...interface{}) (formatted string) {
 
 // Background colors
 
-// RedBg -> red background
+// RedBg -> Red background
 func RedBg(text ...interface{}) (formatted string) {
 	return styledText(BgRed, text)
 }
 
-// GreenBg -> green background
+// GreenBg -> Green background
 func GreenBg(text ...interface{}) (formatted string) {
 	return styledText(BgGreen, text)
 }
 
-// YellowBg -> yellow background
+// YellowBg -> Yellow background
 func YellowBg(text ...interface{}) (formatted string) {
 	return styledText(BgYellow, text)
 }
 
-// BlueBg -> blue background
+// BlueBg -> Blue background
 func BlueBg(text ...interface{}) (formatted string) {
 	return styledText(BgBlue, text)
 }
 
-// MagentaBg -> magenta background
+// MagentaBg -> Magenta background
 func MagentaBg(text ...interface{}) (formatted string) {
 	return styledText(BgMagenta, text)
 }
 
-// CyanBg -> cyan background
+// CyanBg -> Cyan background
 func CyanBg(text ...interface{}) (formatted string) {
 	return styledText(BgCyan, text)
 }
 
-// WhiteBg -> white background
+// WhiteBg -> White background
 func WhiteBg(text ...interface{}) (formatted string) {
 	return styledText(BgWhite, text)
 }
@@ -153,57 +153,57 @@ func BrightWhiteBg(text ...interface{}) (formatted string) {
 
 // Text styling
 
-// BoldStyle -> print text in bold
+// BoldStyle -> Bold text
 func BoldStyle(text ...interface{}) (formatted string) {
 	return styledText(Bold, text)
 }
 
-// FaintStyle -> print text in faint mode
+// FaintStyle -> Faint text
 func FaintStyle(text ...interface{}) (formatted string) {
 	return styledText(Faint, text)
 }
 
-// ItalicStyle -> print text in italic
+// ItalicStyle -> Italic text
 func ItalicStyle(text ...interface{}) (formatted string) {
 	return styledText(Italic, text)
 }
 
-// UnderlineStyle -> print text with underline
+// UnderlineStyle -> Underlined text
 func UnderlineStyle(text ...interface{}) (formatted string) {
 	return styledText(Underline, text)
 }
 
-// SlowBlinkStyle -> print text with slow blink effect
+// SlowBlinkStyle -> Slow blinking text
 func SlowBlinkStyle(text ...interface{}) (formatted string) {
 	return styledText(SlowBlink, text)
 }
 
-// RapidBlinkStyle -> print text with rapid blink effect
+// RapidBlinkStyle -> Rapid blink text
 func RapidBlinkStyle(text ...interface{}) (formatted string) {
 	return styledText(RapidBlink, text)
 }
 
-// InvertStyle -> print text with inverted effect
+// InvertStyle -> Inverted text
 func InvertStyle(text ...interface{}) (formatted string) {
 	return styledText(Invert, text)
 }
 
-// HideStyle -> print text with hide effect
+// HideStyle -> Hidden text
 func HideStyle(text ...interface{}) (formatted string) {
 	return styledText(Hide, text)
 }
 
-// StrikeStyle -> print text with strike effect
+// StrikeStyle -> Striked text
 func StrikeStyle(text ...interface{}) (formatted string) {
 	return styledText(Strike, text)
 }
 
-// FramedStyle -> print text with framed effect - NOT WIDELY SUPPORTED
+// FramedStyle -> Framed text - NOT WIDELY SUPPORTED
 func FramedStyle(text ...interface{}) (formatted string) {
 	return styledText(Framed, text)
 }
 
-// EncircledStyle -> print text with encircled effect - NOT WIDELY SUPPORTED
+// EncircledStyle -> Encircled text - NOT WIDELY SUPPORTED
 func EncircledStyle(text ...interface{}) (formatted string) {
 	return styledText(Encircled, text)
 }
