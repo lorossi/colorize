@@ -56,9 +56,11 @@ fmt.Println(colorize.BrightMagentaBg("So magenta and so bright!"))
 fmt.Println(colorize.Bold("This is so bold!"))
 ```
 
+**See a few more examples [here.](/examples/main.go)**
+
 ## List of constants
 
-### Text color
+### Text color constants
 
 ```go
 FgBlack
@@ -79,7 +81,7 @@ FgBrightCyan
 FgBrightWhite
 ```
 
-### Backgroud color
+### Backgroud color constants
 
 ```go
 BgBlack
@@ -100,7 +102,7 @@ BgBrightCyan
 BgBrightWhite
 ```
 
-### Text decoration
+### Text decoration constants
 
 ```go
 Bold
@@ -118,7 +120,7 @@ Encircled // Not widely supported
 
 ## Quick functions
 
-### Text color
+### Text color functions
 
 ```go
 Red()
@@ -137,7 +139,7 @@ BrightCyan()
 BrightWhite()
 ```
 
-### Background color
+### Background color functions
 
 ```go
 RedBg()
@@ -156,7 +158,7 @@ BrightCyanBg()
 BrightWhiteBg()
 ```
 
-### Text decoration
+### Text decoration functions
 
 ```go
 BoldStyle()
@@ -174,9 +176,20 @@ EncircledStyle()  // Not widely supported
 
 ## Docs
 
-[Read the documentation here](/DOCS.md)
+[Read the documentation here](/DOCS.md).
 
-[Generated using Gomarkdoc](https://github.com/princjef/gomarkdoc)
+This package uses no dependancies exluding the built-in functions.
+
+There are a lot of packages similar (and even better!) than this one. But since I wanted to use colored terminal for my project [Journal](https://www.github.com/lorossi/journal), I decided to make my own package, as a learning experience. I don't regret it at all. It's been fun so far.
+
+### File structure
+
+There are currently **3** go files:
+
+1. `colorize.go` is the main file, containing the public (exported) functions.
+2. `quickfunctions.go` is the file containing the so called *(by me, at least)* "quick functions" to rapidly create colored or styled text.
+3. `utils.go` is the file containing all the private (unexported) functions.
+
 
 ## License
 
