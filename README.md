@@ -51,7 +51,7 @@ colorize.ResetStyle()
 Set a text color, background color or style with the quick functions:
 
 ```go
-fmt.Println(colorize.Green("Green text!"))
+fmt.Println(colorize.Green("Green text!", 123, "also green numbers!"))
 fmt.Println(colorize.BrightMagentaBg("So magenta and so bright!"))
 fmt.Println(colorize.Bold("This is so bold!"))
 ```
@@ -100,7 +100,7 @@ BgBrightCyan
 BgBrightWhite
 ```
 
-### Text decorations
+### Text decoration
 
 ```go
 Bold
@@ -115,6 +115,62 @@ Strike
 Framed  // Not widely supported
 Encircled // Not widely supported
 ```
+
+## Quick functions
+
+### Text color
+
+```go
+Red()
+Green()
+Yellow()
+Blue()
+Magenta()
+Cyan()
+White()
+BrightRed()
+BrightGreen()
+BrightYellow()
+BrightBlue()
+BrightMagenta()
+BrightCyan()
+BrightWhite()
+```
+
+### Background color
+
+```go
+RedBg()
+GreenBg()
+YellowBg()
+BlueBg()
+MagentaBg()
+CyanBg()
+WhiteBg()
+BrightRedBg()
+BrightGreenBg()
+BrightYellowBg()
+BrightBlueBg()
+BrightMagentaBg()
+BrightCyanBg()
+BrightWhiteBg()
+```
+
+### Text decoration
+
+```go
+BoldStyle()
+FaintStyle()
+ItalicStyle()
+UnderlineStyle()
+SlowBlinkStyle()
+RapidBlinkStyle()
+InvertStyle()
+HideStyle()
+StrikeStyle()
+FramedStyle()
+EncircledStyle()
+``
 
 ## Docs
 
