@@ -4,7 +4,7 @@ Simple Go package to have colored and formatted text inside your terminal
 
 ## Examples
 
-Set the style manually
+Set the style manually:
 
 ```go
 colorize.SetStyle(colorize.Bold, colorize.FgBrightBlue, colorize.BgBrightYellow)
@@ -12,7 +12,7 @@ Fmt.Println("WOW")
 colorize.ResetStyle()
 ```
 
-Set an rgb value for the text
+Set an rgb value for the text:
 
 ```go
 colorize.SetFgRGB(255, 0, 0)
@@ -20,7 +20,7 @@ Fmt.Println("Colored!")
 colorize.ResetStyle()
 ```
 
-Set an rgb value for the background
+Set an rgb value for the background:
 
 ```go
 colorize.SetBgRGB(0, 255, 0)
@@ -28,7 +28,7 @@ Fmt.Println("Now is green!")
 colorize.ResetStyle()
 ```
 
-Set truecolors text and background colors! This gives the users more colors than its rgb counterpart but it's less supported (Win10 powershell and linux terminal support this)
+Set truecolors text and background colors! This gives the users more colors than its rgb counterpart but it's less supported (Win10 powershell and linux terminal support this):
 
 ```go
 colorize.SetFgTruecolor(255, 255, 0)
@@ -37,11 +37,12 @@ Fmt.Println("Everything is so colorful!")
 colorize.ResetStyle()
 ```
 
-Set color by HSL values
+Set color by HSL values:
 
 ```go
 colorize.SetFgTruecolorHSL(92, 255, 127)
-fmt.Println("RED!")
+colorize.SetBgTruecolorHSL(112, 255, 127)
+fmt.Println("RED on GREEN!")
 colorize.ResetStyle()
 ```
 
