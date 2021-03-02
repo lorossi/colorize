@@ -123,6 +123,17 @@ func SetStyle(colors ...Style) {
 	applyStyle(s)
 }
 
+// StyleText -> Returns string formatted according to styles
+func StyleText(text string, colors ...interface{}) (formatted string) {
+	formatted = ""
+	for _, c := range colors {
+		formatted += createStyleString(c.(Style))
+	}
+	formatted += text
+	formatted += createStyleString(Reset)
+	return
+}
+
 // ResetStyle -> Reset color, background and decoration to default.
 func ResetStyle() {
 	s := createStyleString(Reset)

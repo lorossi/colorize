@@ -56,6 +56,7 @@ Package colorize is a simple Go package to have colored and formatted text insid
 - [func SetStyle(colors ...Style)](<#func-setstyle>)
 - [func SlowBlinkStyle(text ...interface{}) (formatted string)](<#func-slowblinkstyle>)
 - [func StrikeStyle(text ...interface{}) (formatted string)](<#func-strikestyle>)
+- [func StyleText(text string, colors ...interface{}) (formatted string)](<#func-styletext>)
 - [func UnderlineStyle(text ...interface{}) (formatted string)](<#func-underlinestyle>)
 - [func White(text ...interface{}) (formatted string)](<#func-white>)
 - [func WhiteBg(text ...interface{}) (formatted string)](<#func-whitebg>)
@@ -431,6 +432,14 @@ func StrikeStyle(text ...interface{}) (formatted string)
 ```
 
 StrikeStyle \-\> Striked text
+
+## func StyleText
+
+```go
+func StyleText(text string, colors ...interface{}) (formatted string)
+```
+
+StyleText \-\> Returns string formatted according to styles
 
 ## func UnderlineStyle
 
