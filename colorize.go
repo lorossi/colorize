@@ -113,59 +113,7 @@ const (
 	Encircled Style = 52 + decorationMask // Not widely supported
 )
 
-// hslTOrgb -> converts HSL (range 0-255) to RGB (range 0-255) values
-func hslTOrgb(h, s, l uint8) (r, g, b uint8) {
-	var R, G, B float64
-
-	H := float64(h) / 255
-	S := float64(s) / 255
-	L := float64(l) / 255
-
-	if S == 0 {
-		R = L
-		G = L
-		B = L
-	} else {
-		var c1, c2 float64
-		if L < 0.5 {
-			c2 = L * (1 + S)
-		} else {
-			c2 = (L + S) - (L * S)
-		}
-		c1 = 2*L - c2
-
-		hueToRgb := func(v1, v2, v3 float64) (v float64) {
-			if v3 < 0 {
-				v3++
-			} else if v3 > 1 {
-				v3--
-			}
-
-			if 6.0*v3 < 1 {
-				return v1 + (v2-v1)*6.0*v3
-			}
-			if 2.0*v3 < 1 {
-				return v2
-			}
-			if 3.0*v3 < 1 {
-				return v1 + (v2-v1)*(2.0/3.0-v3)*6.0
-			}
-			return v1
-		}
-
-		R = hueToRgb(c1, c2, H+(1.0/3.0))
-		G = hueToRgb(c1, c2, H)
-		B = hueToRgb(c1, c2, H-(1.0/3.0))
-	}
-
-	r = uint8(R * 255)
-	g = uint8(G * 255)
-	b = uint8(B * 255)
-
-	return r, g, b
-}
-
-// SetStyle -> set text and background colors
+// SetStyle -> Set text and background colors.
 func SetStyle(colors ...Style) {
 	s := ""
 	for _, c := range colors {
@@ -175,13 +123,13 @@ func SetStyle(colors ...Style) {
 	applyStyle(s)
 }
 
-// ResetStyle -> reset color and decoration to default
+// ResetStyle -> Reset color, background and decoration to default.
 func ResetStyle() {
 	s := createStyleString(Reset)
 	applyStyle(s)
 }
 
-// SetFgRGB -> set text color via rgb. RGB in range 0-255, for a total output of 256 colors
+// SetFgRGB -> Set text color via RGB. RGB in range 0-255, for a total output of 256 colors.
 func SetFgRGB(r, g, b uint8) {
 	s := ""
 	s += rgbFgPrefix
@@ -191,7 +139,7 @@ func SetFgRGB(r, g, b uint8) {
 	applyStyle(s)
 }
 
-// SetBgRGB -> set background color via rgb. RGB in range 0-255, for a total output of 256 colors
+// SetBgRGB -> Set background color via RGB. RGB in range 0-255, for a total output of 256 colors.
 func SetBgRGB(r, g, b uint8) {
 	s := ""
 	s += rgbBgPrefix
@@ -201,7 +149,7 @@ func SetBgRGB(r, g, b uint8) {
 	applyStyle(s)
 }
 
-// SetFgTruecolor -> set text color via rgb (true color). RGB in range 0-255, for a total output of 16777216 colors
+// SetFgTruecolor -> Set text color via RGB (true color). RGB in range 0-255, for a total output of 16777216 colors.
 func SetFgTruecolor(r, g, b uint8) {
 	s := ""
 	s += truecolorFgPrefix
@@ -211,7 +159,7 @@ func SetFgTruecolor(r, g, b uint8) {
 	applyStyle(s)
 }
 
-// SetBgTruecolor -> set background color via rgb (true color). RGB in range 0-255, for a total output of 16777216 colors
+// SetBgTruecolor -> Set background color via RGB (true color). RGB in range 0-255, for a total output of 16777216 colors.
 func SetBgTruecolor(r, g, b uint8) {
 	s := ""
 	s += truecolorBgPrefix
@@ -221,7 +169,7 @@ func SetBgTruecolor(r, g, b uint8) {
 	applyStyle(s)
 }
 
-// SetFgTruecolorHSL -> set text color via hsl (true color). hsl in range 0-255, for a total output of 16777216 colors
+// SetFgTruecolorHSL -> Set text color via HSL (true color). HSL in range 0-255, for a total output of 16777216 colors.
 func SetFgTruecolorHSL(h, s, l uint8) {
 	r, g, b := hslTOrgb(h, s, l)
 	style := ""
@@ -232,7 +180,7 @@ func SetFgTruecolorHSL(h, s, l uint8) {
 	applyStyle(style)
 }
 
-// SetBgTruecolorHSL -> set background color via hsl (true color). hsl in range 0-255, for a total output of 16777216 colors
+// SetBgTruecolorHSL -> Set background color via HSL (true color). HSL in range 0-255, for a total output of 16777216 colors.
 func SetBgTruecolorHSL(h, s, l uint8) {
 	r, g, b := hslTOrgb(h, s, l)
 	style := ""
@@ -243,25 +191,25 @@ func SetBgTruecolorHSL(h, s, l uint8) {
 	applyStyle(style)
 }
 
-// MoveCursorToXY -> Move cursor to a x,y position
+// MoveCursorToXY -> Move cursor to a x,y  (zero-indexed) position inside the terminal.
 func MoveCursorToXY(x, y uint8) {
 	s := ""
 	s += prefix
-	s += createCursorXYString(x, y)
+	s += createCursorXYString(x-1, y-1)
 	applyStyle(s)
 }
 
-// Clear -> clears the console (everything) using the current style
+// Clear -> Clear the console (deleting verything) using the current style.
 func Clear() {
 	applyStyle(clearScreen)
 }
 
-// ClearLine -> clears the current console line using the current style
+// ClearLine -> Clear the current console line using the current style.
 func ClearLine() {
 	applyStyle(clearLine)
 }
 
-// MoveCursorBy -> moves the cursor by x, y relative to current position
+// MoveCursorBy -> Move the cursor by x, y relative to current position.
 func MoveCursorBy(x, y int8) {
 	var i, j int8
 	var s string
