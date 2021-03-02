@@ -168,9 +168,9 @@ RapidBlinkStyle()
 InvertStyle()
 HideStyle()
 StrikeStyle()
-FramedStyle()
-EncircledStyle()
-``
+FramedStyle() // Not widely supported
+EncircledStyle()  // Not widely supported
+```
 
 ## Docs
 
