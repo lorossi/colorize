@@ -212,14 +212,6 @@ FramedStyle() // Not widely supported
 EncircledStyle()  // Not widely supported
 ```
 
-## File structure
-
-There are currently **3** go files:
-
-1. `colorize.go` is the main file, containing the public (exported) functions.
-2. `quickfunctions.go` is the file containing the so called *(by me, at least)* "quick functions" to rapidly create colored or styled text.
-3. `utils.go` is the file containing all the private (unexported) functions.
-
 ## License
 
 This project is distributed under CC 4.0 License.
