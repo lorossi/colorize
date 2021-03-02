@@ -202,7 +202,7 @@ FramedStyle() // Not widely supported
 EncircledStyle()  // Not widely supported
 ```
 
-### File structure
+## File structure
 
 There are currently **3** go files:
 
