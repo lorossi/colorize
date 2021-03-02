@@ -60,6 +60,7 @@ func createCursorXYString(x, y uint8) (s string) {
 
 // create styled text. This function both takes the style and the string.
 func styledText(color Style, text ...interface{}) (formatted string) {
+	// create colored string
 	formatted = createStyleString(color)
 	// iterate throught each interface item
 	for _, t := range text {
