@@ -51,13 +51,73 @@ Set a text color, background color or style with the quick functions:
 
 ```go
 fmt.Println(colorize.Green("Green text!"))
-fmt.Println(colorize.BrightMagentaBg("WOW!"))
+fmt.Println(colorize.BrightMagentaBg("So magenta and so bright!"))
 fmt.Println(colorize.Bold("This is so bold!"))
+```
+
+## List of constants
+
+### Text color
+
+```go
+FgBlack
+FgRed
+FgGreen
+FgYellow
+FgBlue
+FgMagenta
+FgCyan
+FgWhite
+FgBrightBlack
+FgBrightRed
+FgBrightGreen
+FgBrightYellow
+FgBrightBlue
+FgBrightMagenta
+FgBrightCyan
+FgBrightWhite
+```
+
+### Backgroud color
+
+```go
+BgBlack
+BgRed
+BgGreen
+BgYellow
+BgBlue
+BgMagenta
+BgCyan
+BgWhite
+BgBrightBlack
+BgBrightRed
+BgBrightGreen
+BgBrightYellow
+BgBrightBlue
+BgBrightMagenta
+BgBrightCyan
+BgBrightWhite
+```
+
+### Text decorations
+
+```go
+Bold
+Faint
+Italic
+Underline
+SlowBlink
+RapidBlink
+Invert
+Hide
+Strike
+Framed  // Not widely supported
+Encircled // Not widely supported
 ```
 
 ## Docs
 
-[Read some documentation here.](/DOCS.md) 
+[Read the documentation here](/DOCS.md)
 
 [Generated using Gomarkdoc](https://github.com/princjef/gomarkdoc)
 
