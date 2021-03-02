@@ -15,6 +15,21 @@
   <span style="font-size:larger;">Colorize is a simple and handy Go package that lets you use colors and styling in your console!</span>
 </p>
 
+## Installation
+
+```bash
+go get github.com/lorossi/colorize
+
+```
+
+## Documentation
+
+[Read the docs here!](/DOCS.md)
+
+This package uses no dependancies exluding the built-in functions.
+
+There are a lot of packages similar (and even better!) than this one. But since I wanted to use colored terminal for my project [Journal](https://www.github.com/lorossi/journal), I decided to make my own package, as a learning experience. I don't regret it at all. It's been fun so far.
+
 ## Examples
 
 Set the style manually:
@@ -186,14 +201,6 @@ StrikeStyle()
 FramedStyle() // Not widely supported
 EncircledStyle()  // Not widely supported
 ```
-
-## Docs
-
-[Read the documentation here](/DOCS.md).
-
-This package uses no dependancies exluding the built-in functions.
-
-There are a lot of packages similar (and even better!) than this one. But since I wanted to use colored terminal for my project [Journal](https://www.github.com/lorossi/journal), I decided to make my own package, as a learning experience. I don't regret it at all. It's been fun so far.
 
 ### File structure
 
