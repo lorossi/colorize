@@ -70,7 +70,7 @@ Package colorize is a simple Go package to have colored and formatted text insid
 func Blue(text ...interface{}) (formatted string)
 ```
 
-Blue \-\> blue text
+Blue \-\> Blue text
 
 ## func BlueBg
 
@@ -78,7 +78,7 @@ Blue \-\> blue text
 func BlueBg(text ...interface{}) (formatted string)
 ```
 
-BlueBg \-\> blue background
+BlueBg \-\> Blue background
 
 ## func BoldStyle
 
@@ -86,7 +86,7 @@ BlueBg \-\> blue background
 func BoldStyle(text ...interface{}) (formatted string)
 ```
 
-BoldStyle \-\> print text in bold
+BoldStyle \-\> Bold text
 
 ## func BrightBlue
 
@@ -206,7 +206,7 @@ BrightYellowBg \-\> Yellow bright background
 func Clear()
 ```
 
-Clear \-\> clears the console \(everything\) using the current style
+Clear \-\> Clear the console \(deleting verything\) using the current style\.
 
 ## func ClearLine
 
@@ -214,7 +214,7 @@ Clear \-\> clears the console \(everything\) using the current style
 func ClearLine()
 ```
 
-ClearLine \-\> clears the current console line using the current style
+ClearLine \-\> Clear the current console line using the current style\.
 
 ## func Cyan
 
@@ -230,7 +230,7 @@ Cyan \-\> Cyan text
 func CyanBg(text ...interface{}) (formatted string)
 ```
 
-CyanBg \-\> cyan background
+CyanBg \-\> Cyan background
 
 ## func EncircledStyle
 
@@ -238,7 +238,7 @@ CyanBg \-\> cyan background
 func EncircledStyle(text ...interface{}) (formatted string)
 ```
 
-EncircledStyle \-\> print text with encircled effect \- NOT WIDELY SUPPORTED
+EncircledStyle \-\> Encircled text \- NOT WIDELY SUPPORTED
 
 ## func FaintStyle
 
@@ -246,7 +246,7 @@ EncircledStyle \-\> print text with encircled effect \- NOT WIDELY SUPPORTED
 func FaintStyle(text ...interface{}) (formatted string)
 ```
 
-FaintStyle \-\> print text in faint mode
+FaintStyle \-\> Faint text
 
 ## func FramedStyle
 
@@ -254,7 +254,7 @@ FaintStyle \-\> print text in faint mode
 func FramedStyle(text ...interface{}) (formatted string)
 ```
 
-FramedStyle \-\> print text with framed effect \- NOT WIDELY SUPPORTED
+FramedStyle \-\> Framed text \- NOT WIDELY SUPPORTED
 
 ## func Green
 
@@ -270,7 +270,7 @@ Green \-\> Green text
 func GreenBg(text ...interface{}) (formatted string)
 ```
 
-GreenBg \-\> green background
+GreenBg \-\> Green background
 
 ## func HideStyle
 
@@ -278,7 +278,7 @@ GreenBg \-\> green background
 func HideStyle(text ...interface{}) (formatted string)
 ```
 
-HideStyle \-\> print text with hide effect
+HideStyle \-\> Hidden text
 
 ## func InvertStyle
 
@@ -286,7 +286,7 @@ HideStyle \-\> print text with hide effect
 func InvertStyle(text ...interface{}) (formatted string)
 ```
 
-InvertStyle \-\> print text with inverted effect
+InvertStyle \-\> Inverted text
 
 ## func ItalicStyle
 
@@ -294,7 +294,7 @@ InvertStyle \-\> print text with inverted effect
 func ItalicStyle(text ...interface{}) (formatted string)
 ```
 
-ItalicStyle \-\> print text in italic
+ItalicStyle \-\> Italic text
 
 ## func Magenta
 
@@ -310,7 +310,7 @@ Magenta \-\> Magenta text
 func MagentaBg(text ...interface{}) (formatted string)
 ```
 
-MagentaBg \-\> magenta background
+MagentaBg \-\> Magenta background
 
 ## func MoveCursorBy
 
@@ -318,7 +318,7 @@ MagentaBg \-\> magenta background
 func MoveCursorBy(x, y int8)
 ```
 
-MoveCursorBy \-\> moves the cursor by x\, y relative to current position
+MoveCursorBy \-\> Move the cursor by x\, y relative to current position\.
 
 ## func MoveCursorToXY
 
@@ -326,7 +326,7 @@ MoveCursorBy \-\> moves the cursor by x\, y relative to current position
 func MoveCursorToXY(x, y uint8)
 ```
 
-MoveCursorToXY \-\> Move cursor to a x\,y position
+MoveCursorToXY \-\> Move cursor to a x\,y  \(zero\-indexed\) position inside the terminal\.
 
 ## func RapidBlinkStyle
 
@@ -334,7 +334,7 @@ MoveCursorToXY \-\> Move cursor to a x\,y position
 func RapidBlinkStyle(text ...interface{}) (formatted string)
 ```
 
-RapidBlinkStyle \-\> print text with rapid blink effect
+RapidBlinkStyle \-\> Rapid blink text
 
 ## func Red
 
@@ -350,7 +350,7 @@ Red \-\> Red text
 func RedBg(text ...interface{}) (formatted string)
 ```
 
-RedBg \-\> red background
+RedBg \-\> Red background
 
 ## func ResetStyle
 
@@ -358,7 +358,7 @@ RedBg \-\> red background
 func ResetStyle()
 ```
 
-ResetStyle \-\> reset color and decoration to default
+ResetStyle \-\> Reset color\, background and decoration to default\.
 
 ## func SetBgRGB
 
@@ -366,7 +366,7 @@ ResetStyle \-\> reset color and decoration to default
 func SetBgRGB(r, g, b uint8)
 ```
 
-SetBgRGB \-\> set background color via rgb\. RGB in range 0\-255\, for a total output of 256 colors
+SetBgRGB \-\> Set background color via RGB\. RGB in range 0\-255\, for a total output of 256 colors\.
 
 ## func SetBgTruecolor
 
@@ -374,7 +374,7 @@ SetBgRGB \-\> set background color via rgb\. RGB in range 0\-255\, for a total o
 func SetBgTruecolor(r, g, b uint8)
 ```
 
-SetBgTruecolor \-\> set background color via rgb \(true color\)\. RGB in range 0\-255\, for a total output of 16777216 colors
+SetBgTruecolor \-\> Set background color via RGB \(true color\)\. RGB in range 0\-255\, for a total output of 16777216 colors\.
 
 ## func SetBgTruecolorHSL
 
@@ -382,7 +382,7 @@ SetBgTruecolor \-\> set background color via rgb \(true color\)\. RGB in range 0
 func SetBgTruecolorHSL(h, s, l uint8)
 ```
 
-SetBgTruecolorHSL \-\> set background color via hsl \(true color\)\. hsl in range 0\-255\, for a total output of 16777216 colors
+SetBgTruecolorHSL \-\> Set background color via HSL \(true color\)\. HSL in range 0\-255\, for a total output of 16777216 colors\.
 
 ## func SetFgRGB
 
@@ -390,7 +390,7 @@ SetBgTruecolorHSL \-\> set background color via hsl \(true color\)\. hsl in rang
 func SetFgRGB(r, g, b uint8)
 ```
 
-SetFgRGB \-\> set text color via rgb\. RGB in range 0\-255\, for a total output of 256 colors
+SetFgRGB \-\> Set text color via RGB\. RGB in range 0\-255\, for a total output of 256 colors\.
 
 ## func SetFgTruecolor
 
@@ -398,7 +398,7 @@ SetFgRGB \-\> set text color via rgb\. RGB in range 0\-255\, for a total output 
 func SetFgTruecolor(r, g, b uint8)
 ```
 
-SetFgTruecolor \-\> set text color via rgb \(true color\)\. RGB in range 0\-255\, for a total output of 16777216 colors
+SetFgTruecolor \-\> Set text color via RGB \(true color\)\. RGB in range 0\-255\, for a total output of 16777216 colors\.
 
 ## func SetFgTruecolorHSL
 
@@ -406,7 +406,7 @@ SetFgTruecolor \-\> set text color via rgb \(true color\)\. RGB in range 0\-255\
 func SetFgTruecolorHSL(h, s, l uint8)
 ```
 
-SetFgTruecolorHSL \-\> set text color via hsl \(true color\)\. hsl in range 0\-255\, for a total output of 16777216 colors
+SetFgTruecolorHSL \-\> Set text color via HSL \(true color\)\. HSL in range 0\-255\, for a total output of 16777216 colors\.
 
 ## func SetStyle
 
@@ -414,7 +414,7 @@ SetFgTruecolorHSL \-\> set text color via hsl \(true color\)\. hsl in range 0\-2
 func SetStyle(colors ...Style)
 ```
 
-SetStyle \-\> set text and background colors
+SetStyle \-\> Set text and background colors\.
 
 ## func SlowBlinkStyle
 
@@ -422,7 +422,7 @@ SetStyle \-\> set text and background colors
 func SlowBlinkStyle(text ...interface{}) (formatted string)
 ```
 
-SlowBlinkStyle \-\> print text with slow blink effect
+SlowBlinkStyle \-\> Slow blinking text
 
 ## func StrikeStyle
 
@@ -430,7 +430,7 @@ SlowBlinkStyle \-\> print text with slow blink effect
 func StrikeStyle(text ...interface{}) (formatted string)
 ```
 
-StrikeStyle \-\> print text with strike effect
+StrikeStyle \-\> Striked text
 
 ## func UnderlineStyle
 
@@ -438,7 +438,7 @@ StrikeStyle \-\> print text with strike effect
 func UnderlineStyle(text ...interface{}) (formatted string)
 ```
 
-UnderlineStyle \-\> print text with underline
+UnderlineStyle \-\> Underlined text
 
 ## func White
 
@@ -454,7 +454,7 @@ White \-\> White text
 func WhiteBg(text ...interface{}) (formatted string)
 ```
 
-WhiteBg \-\> white background
+WhiteBg \-\> White background
 
 ## func Yellow
 
@@ -470,7 +470,7 @@ Yellow \-\> Yellow text
 func YellowBg(text ...interface{}) (formatted string)
 ```
 
-YellowBg \-\> yellow background
+YellowBg \-\> Yellow background
 
 ## type Style
 

@@ -74,3 +74,55 @@ func styledText(color Style, text ...interface{}) (formatted string) {
 	formatted += createStyleString(Reset)
 	return
 }
+
+// converts HSL (range 0-255) to RGB (range 0-255)
+func hslTOrgb(h, s, l uint8) (r, g, b uint8) {
+	var R, G, B float64
+
+	H := float64(h) / 255
+	S := float64(s) / 255
+	L := float64(l) / 255
+
+	if S == 0 {
+		R = L
+		G = L
+		B = L
+	} else {
+		var c1, c2 float64
+		if L < 0.5 {
+			c2 = L * (1 + S)
+		} else {
+			c2 = (L + S) - (L * S)
+		}
+		c1 = 2*L - c2
+
+		hueToRgb := func(v1, v2, v3 float64) (v float64) {
+			if v3 < 0 {
+				v3++
+			} else if v3 > 1 {
+				v3--
+			}
+
+			if 6.0*v3 < 1 {
+				return v1 + (v2-v1)*6.0*v3
+			}
+			if 2.0*v3 < 1 {
+				return v2
+			}
+			if 3.0*v3 < 1 {
+				return v1 + (v2-v1)*(2.0/3.0-v3)*6.0
+			}
+			return v1
+		}
+
+		R = hueToRgb(c1, c2, H+(1.0/3.0))
+		G = hueToRgb(c1, c2, H)
+		B = hueToRgb(c1, c2, H-(1.0/3.0))
+	}
+
+	r = uint8(R * 255)
+	g = uint8(G * 255)
+	b = uint8(B * 255)
+
+	return r, g, b
+}
