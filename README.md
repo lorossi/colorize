@@ -10,7 +10,9 @@
    <img src="https://img.shields.io/github/last-commit/lorossi/colorize/main?style=flat-square">
 </p>
 
-Colorize is a simple and handy Go package that lets you use colors and styling in your console!
+<p align="center">
+  <span style="font-size:larger;">Colorize is a simple and handy Go package that lets you use colors and styling in your console!</span>
+</p>
 
 ## Examples
 
