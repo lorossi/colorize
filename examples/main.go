@@ -2,23 +2,27 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"math/rand"
+	"time"
 
 	"github.com/lorossi/colorize"
 )
 
 func main() {
 	fmt.Println("Now printing rainbow")
-	rainbow()
+	rainbowStripes()
 	fmt.Println("Now printing advertising")
 	advertising()
 	fmt.Println("Now printing Christmas tree")
 	christmasTree()
 	fmt.Println("Now printing README demo")
 	readmeDemo()
+	fmt.Println("Now printing rainbow demo")
+	rainbowPoints()
 }
 
-func rainbow() {
+func rainbowStripes() {
 	var stripe string
 	var stripesColors [7][3]uint8
 
@@ -41,14 +45,13 @@ func rainbow() {
 
 func advertising() {
 	fmt.Println()
-
+	// set the colors in the verbose way
 	colorize.SetStyle(colorize.FgBrightRed, colorize.BgWhite, colorize.Bold, colorize.Underline, colorize.RapidBlink)
 	fmt.Println("NEW PACKAGE!")
 	colorize.ResetStyle()
-
-	colorize.SetStyle(colorize.FgBlue, colorize.BgWhite, colorize.Bold)
-	fmt.Println("Offering:")
-	colorize.ResetStyle()
+	// or use the faster way
+	fmt.Println(colorize.StyleText("Offering:", colorize.FgBlue, colorize.BgWhite, colorize.Bold))
+	// no need to reset!
 
 	fmt.Println(colorize.BoldStyle("Bold text!"), colorize.Red("Colored text!"), colorize.UnderlineStyle("Underlined style!"), colorize.Yellow("Crazy stuff!"))
 	fmt.Println()
@@ -154,5 +157,24 @@ func readmeDemo() {
 	colorize.ResetStyle()
 	fmt.Println()
 
+	fmt.Println()
+}
+
+func rainbowPoints() {
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	seed := uint8(r1.Intn(255))
+
+	fmt.Println()
+	for x := 0.0; x < 32; x++ {
+		for y := 0.0; y < 32; y++ {
+			dist := math.Sqrt(x*x + y*y)
+			hue := dist / (32 * math.Sqrt(2)) * 255
+			colorize.SetFgTruecolorHSL(uint8(hue)+seed, 255, 127)
+			fmt.Print("#")
+			colorize.ResetStyle()
+		}
+		fmt.Println()
+	}
 	fmt.Println()
 }
