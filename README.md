@@ -39,17 +39,6 @@ colorize.SetStyle(colorize.Bold, colorize.FgBrightBlue, colorize.BgBrightYellow)
 Fmt.Println("WOW")
 colorize.ResetStyle()
 ```
-
-If you need to style only a string with default constants (no RGB, HSL or Truetype) you can also use the oneliner function:
-
-```go
-fmt.Println(StyleText("This is waaay faster!",  colorize.FgBrightWhite, colorize.BgBlue, colorize.Bold, colorize.Underline))
-s := StyleText("This is the opposite!",  colorize.FgBlue, colorize.BgBrightWhite, colorize.Bold, colorize.Underline)
-fmt.Println(s)
-```
-
-Note that there's no need to reset the style later on.
-
 Set an rgb value for the text:
 
 ```go
@@ -93,6 +82,16 @@ fmt.Println(colorize.Green("Green text!", 123, "also green numbers!"))
 fmt.Println(colorize.BrightMagentaBg("So magenta and so bright!"))
 fmt.Println(colorize.Bold("This is so bold!"))
 ```
+
+If you need to style only a string with default constants (no RGB, HSL or Truetype) you can also use the oneliner function:
+
+```go
+fmt.Println(StyleText("This is waaay faster!",  colorize.FgBrightWhite, colorize.BgBlue, colorize.Bold, colorize.Underline))
+s := StyleText("This is the opposite!",  colorize.FgBlue, colorize.BgBrightWhite, colorize.Bold, colorize.Underline)
+fmt.Println(s)
+```
+
+Note that there's no need to reset the style later on.
 
 **See a few more examples [here.](/examples/main.go)**
 
