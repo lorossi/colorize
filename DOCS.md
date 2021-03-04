@@ -42,17 +42,22 @@ Package colorize is a simple Go package to have colored and formatted text insid
 - [func Magenta(text ...interface{}) (formatted string)](<#func-magenta>)
 - [func MagentaBg(text ...interface{}) (formatted string)](<#func-magentabg>)
 - [func MoveCursorBy(x, y int8)](<#func-movecursorby>)
+- [func MoveCursorLine(lines int8)](<#func-movecursorline>)
 - [func MoveCursorToXY(x, y uint8)](<#func-movecursortoxy>)
 - [func RapidBlinkStyle(text ...interface{}) (formatted string)](<#func-rapidblinkstyle>)
 - [func Red(text ...interface{}) (formatted string)](<#func-red>)
 - [func RedBg(text ...interface{}) (formatted string)](<#func-redbg>)
 - [func ResetStyle()](<#func-resetstyle>)
+- [func RestoreCursor()](<#func-restorecursor>)
+- [func SaveCursor()](<#func-savecursor>)
 - [func SetBgRGB(r, g, b uint8)](<#func-setbgrgb>)
 - [func SetBgTruecolor(r, g, b uint8)](<#func-setbgtruecolor>)
 - [func SetBgTruecolorHSL(h, s, l uint8)](<#func-setbgtruecolorhsl>)
+- [func SetBgTruecolorHex(hex string)](<#func-setbgtruecolorhex>)
 - [func SetFgRGB(r, g, b uint8)](<#func-setfgrgb>)
 - [func SetFgTruecolor(r, g, b uint8)](<#func-setfgtruecolor>)
 - [func SetFgTruecolorHSL(h, s, l uint8)](<#func-setfgtruecolorhsl>)
+- [func SetFgTruecolorHex(hex string)](<#func-setfgtruecolorhex>)
 - [func SetStyle(colors ...Style)](<#func-setstyle>)
 - [func SlowBlinkStyle(text ...interface{}) (formatted string)](<#func-slowblinkstyle>)
 - [func StrikeStyle(text ...interface{}) (formatted string)](<#func-strikestyle>)
@@ -321,6 +326,14 @@ func MoveCursorBy(x, y int8)
 
 MoveCursorBy \-\> Move the cursor by x\, y relative to current position\.
 
+## func MoveCursorLine
+
+```go
+func MoveCursorLine(lines int8)
+```
+
+MoveCursorLine \-\> Move cursor by an amount of lines \(positive is down\, negative is up\)
+
 ## func MoveCursorToXY
 
 ```go
@@ -361,6 +374,22 @@ func ResetStyle()
 
 ResetStyle \-\> Reset color\, background and decoration to default\.
 
+## func RestoreCursor
+
+```go
+func RestoreCursor()
+```
+
+RestoreCursor \-\> Restore previously saved cursor position
+
+## func SaveCursor
+
+```go
+func SaveCursor()
+```
+
+SaveCursor \-\> Save cursor position
+
 ## func SetBgRGB
 
 ```go
@@ -385,6 +414,14 @@ func SetBgTruecolorHSL(h, s, l uint8)
 
 SetBgTruecolorHSL \-\> Set background color via HSL \(true color\)\. HSL in range 0\-255\, for a total output of 16777216 colors\.
 
+## func SetBgTruecolorHex
+
+```go
+func SetBgTruecolorHex(hex string)
+```
+
+SetBgTruecolorHex \-\> Set background color via hex \(true color\)\. Hex in format \#FFFFFF\, \#FFF\, FFFFFF\, FFF \(case insensitive\, with or without the leading \#\)\. It defaults to white in case an invalid sequence is passed
+
 ## func SetFgRGB
 
 ```go
@@ -408,6 +445,14 @@ func SetFgTruecolorHSL(h, s, l uint8)
 ```
 
 SetFgTruecolorHSL \-\> Set text color via HSL \(true color\)\. HSL in range 0\-255\, for a total output of 16777216 colors\.
+
+## func SetFgTruecolorHex
+
+```go
+func SetFgTruecolorHex(hex string)
+```
+
+SetFgTruecolorHex \-\> Set text color via hex \(true color\)\. Hex in format \#FFFFFF\, \#FFF\, FFFFFF\, FFF \(case insensitive\, with or without the leading \#\)\. It defaults to white in case an invalid sequence is passed
 
 ## func SetStyle
 
