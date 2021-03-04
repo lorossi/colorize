@@ -10,16 +10,51 @@ import (
 )
 
 func main() {
-	fmt.Println("Now printing rainbow")
+	fmt.Println("Now printing starry night")
+	starryNight()
+	/*fmt.Println("Now printing rainbow stripes demo")
 	rainbowStripes()
 	fmt.Println("Now printing advertising")
 	advertising()
-	fmt.Println("Now printing Christmas tree")
+	fmt.Println("Now printing Christmas tree demo")
 	christmasTree()
 	fmt.Println("Now printing README demo")
 	readmeDemo()
-	fmt.Println("Now printing rainbow demo")
+	fmt.Println("Now printing rainbow points demo")
 	rainbowPoints()
+	*/
+}
+
+func starryNight() {
+	const width int = 100
+	const height int = 25
+	const stars int = 50
+
+	// initialize the random number generator
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	// save cursor location to restore it later
+	colorize.SaveCursor()
+
+	// set background and text color via Hex
+	colorize.SetBgTruecolorHex("#000072")
+	colorize.SetFgTruecolorHex("#8b8b00")
+	// set cursor to top left corner
+	colorize.MoveCursorToXY(0, 0)
+	// clear screen (will also set everything to background color)
+	colorize.Clear()
+	// draw stars
+	for i := 0; i < stars; i++ {
+		x := uint8(r1.Intn(width))
+		y := uint8(r1.Intn(height))
+		colorize.MoveCursorToXY(x, y)
+		fmt.Print("★")
+	}
+	colorize.ResetStyle()
+
+	// reset cursor position and skip lines
+	colorize.RestoreCursor()
+	colorize.MoveCursorLine(int8(height))
 }
 
 func rainbowStripes() {
@@ -76,21 +111,25 @@ func advertising() {
 }
 
 func christmasTree() {
+	// initialize the random number generator
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+
 	fmt.Println()
 	// initialize tree width
-	width := 11
+	const width int = 11
 	// initialize light colors
 	colors := [4]colorize.Style{colorize.FgBrightRed, colorize.FgBrightBlue, colorize.FgBrightGreen, colorize.FgBrightYellow}
 	// print star on top
 	colorize.MoveCursorBy(int8(width), 0)
-	fmt.Println(colorize.Yellow("X"))
+	fmt.Println(colorize.Yellow("★"))
 	for i := 0; i < width; i++ {
 		// leave space on the left
 		colorize.MoveCursorBy(int8(width-i), 0)
 		// prepare the character
 		colorize.SetStyle(colorize.RapidBlink, colorize.BgBrightGreen)
 		for k := 0; k < 2*i+1; k++ {
-			if rand.Float64() > 0.66 {
+			if r1.Float64() > 0.66 {
 				// select current color
 				lightColor := colors[rand.Intn(4)]
 				colorize.SetStyle(lightColor)
@@ -161,15 +200,18 @@ func readmeDemo() {
 }
 
 func rainbowPoints() {
+	const size float64 = 40
+	// initialize the random number generator
 	s1 := rand.NewSource(time.Now().UnixNano())
 	r1 := rand.New(s1)
+	// get a random seed
 	seed := uint8(r1.Intn(255))
 
 	fmt.Println()
-	for x := 0.0; x < 32; x++ {
-		for y := 0.0; y < 32; y++ {
+	for x := 0.0; x < size; x++ {
+		for y := 0.0; y < size; y++ {
 			dist := math.Sqrt(x*x + y*y)
-			hue := dist / (32 * math.Sqrt(2)) * 255
+			hue := dist / (size * math.Sqrt(2)) * 255
 			colorize.SetFgTruecolorHSL(uint8(hue)+seed, 255, 127)
 			fmt.Print("#")
 			colorize.ResetStyle()
