@@ -39,6 +39,7 @@ colorize.SetStyle(colorize.Bold, colorize.FgBrightBlue, colorize.BgBrightYellow)
 Fmt.Println("WOW")
 colorize.ResetStyle()
 ```
+
 Set an rgb value for the text:
 
 ```go
