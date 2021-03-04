@@ -73,6 +73,16 @@ fmt.Println("RED on GREEN!")
 colorize.ResetStyle()
 ```
 
+Set color by hex string:
+
+```go
+colorize.SetFgTruecolorHex("#fefe22")
+colorize.SetBgTruecolorHex("0038a8")
+fmt.Println("YELLOW on BLUE!")
+colorize.ResetStyle()
+
+```
+
 **Never foget to reset the style via the `ResetStyle()` function!**
 
 Set a text color, background color or style with the quick functions:
@@ -83,7 +93,7 @@ fmt.Println(colorize.BrightMagentaBg("So magenta and so bright!"))
 fmt.Println(colorize.Bold("This is so bold!"))
 ```
 
-If you need to style only a string with default constants (no RGB, HSL or Truetype) you can also use the oneliner function:
+If you need to style only a string with default constants (no RGB, HSL or Truetype) you can also use the oneliner function (Note that there's no need to reset the style later on) :
 
 ```go
 fmt.Println(StyleText("This is waaay faster!",  colorize.FgBrightWhite, colorize.BgBlue, colorize.Bold, colorize.Underline))
@@ -91,7 +101,27 @@ s := StyleText("This is the opposite!",  colorize.FgBlue, colorize.BgBrightWhite
 fmt.Println(s)
 ```
 
-Note that there's no need to reset the style later on.
+Clear the whole screen and the current line using currently set style:
+
+```go
+colorize.Clear()
+colorize.ClearLine()
+```
+
+Move the cursor to a certain location, by a certain displacement or by a certain number of lines:
+
+```go
+colorize.MoveCursorTo(10, 10)
+colorize.MoveCursorBy(5, 3)
+colorize.MoveCursorLine(4)
+```
+
+Save and restore cursor position:
+
+```go
+colorize.SaveCursor()
+colorize.RestoreCursor()
+```
 
 **See a few more examples [here.](/examples/main.go)**
 
