@@ -5,6 +5,8 @@
 
 package colorize
 
+import "errors"
+
 // reference
 // https://en.wikipedia.org/wiki/ANSI_escape_code
 
@@ -119,8 +121,7 @@ func SetFgTruecolorHex(hex string) {
 		break
 	default:
 		// default to white
-		length = 6
-		hex = "FFFFFF"
+		panic(errors.New("Invalid HEX color"))
 	}
 
 	var r, g, b uint8
@@ -161,9 +162,7 @@ func SetBgTruecolorHex(hex string) {
 	case 6:
 		break
 	default:
-		// default to white
-		length = 6
-		hex = "FFFFFF"
+		panic(errors.New("Invalid HEX color"))
 	}
 
 	var r, g, b uint8

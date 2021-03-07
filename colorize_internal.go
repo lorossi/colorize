@@ -1,6 +1,7 @@
 package colorize
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -144,7 +145,7 @@ func hexToUint8(hex string) (num uint8) {
 	if e == nil {
 		num = uint8(bigNum)
 	} else {
-		num = 0
+		panic(errors.New("Invalid hex value"))
 	}
 
 	return
