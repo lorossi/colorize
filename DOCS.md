@@ -6,8 +6,6 @@
 import "github.com/lorossi/colorize"
 ```
 
-Package colorize is a simple Go package to have colored and formatted text inside your terminal
-
 ## Index
 
 - [func Blue(text ...interface{}) (formatted string)](<#func-blue>)
