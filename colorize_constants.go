@@ -1,5 +1,8 @@
 package colorize
 
+// constants reference
+// https://en.wikipedia.org/wiki/ANSI_escape_code
+
 // Reset const
 const (
 	Reset Style = 0
@@ -24,6 +27,8 @@ const (
 const (
 	savePos          string = "s"
 	restorePos       string = "u"
+	hideCursor       string = "?25l"
+	showCursor       string = "?25h"
 	moveHome         string = "H"
 	moveUp           string = "1A"
 	moveDown         string = "1B"
@@ -35,8 +40,10 @@ const (
 
 // String constants - erase
 const (
-	clearScreen string = prefix + "2J"
-	clearLine   string = prefix + "2K"
+	clearScreen         string = prefix + "2J"
+	clearLine           string = prefix + "2K"
+	clearLineUntilEnd   string = prefix + "0K"
+	clearLineUntilStart string = prefix + "1K"
 )
 
 // Mask constants

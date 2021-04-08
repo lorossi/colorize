@@ -5,10 +5,9 @@
 
 package colorize
 
-import "errors"
-
-// reference
-// https://en.wikipedia.org/wiki/ANSI_escape_code
+import (
+	"errors"
+)
 
 // Style -> Define type used in all the styling options
 type Style uint8
@@ -195,6 +194,25 @@ func ClearLine() {
 	applyStyle(clearLine)
 }
 
+// ClearLineUntilStart -> Clear the current console line from the current position until line start
+func ClearLineUntilStart() {
+	applyStyle(clearLineUntilStart)
+}
+
+// ClearLineUntilEnd -> Clear the current console line from the current position until line end
+func ClearLineUntilEnd() {
+	applyStyle(clearLineUntilEnd)
+}
+
+// ClearXY -> Clear the character in position x, y using the current style
+func ClearXY(x, y uint8) {
+	style := ""
+	style += prefix
+	style += createCursorXYString(x, y)
+	style += "\b "
+	applyStyle(style)
+}
+
 // MoveCursorBy -> Move the cursor by x, y relative to current position.
 func MoveCursorBy(x, y int8) {
 	var i, j int8
@@ -226,7 +244,7 @@ func MoveCursorBy(x, y int8) {
 func MoveCursorToXY(x, y uint8) {
 	style := ""
 	style += prefix
-	style += createCursorXYString(x-1, y-1)
+	style += createCursorXYString(x, y)
 	applyStyle(style)
 }
 
@@ -266,5 +284,21 @@ func RestoreCursor() {
 	style := ""
 	style += prefix
 	style += restorePos
+	applyStyle(style)
+}
+
+// HideCursor -> Hide cursor from terminal (use ShowCursor to re-enable)
+func HideCursor() {
+	style := ""
+	style += prefix
+	style += hideCursor
+	applyStyle(style)
+}
+
+// ShowCursor -> Show cursor in terminal
+func ShowCursor() {
+	style := ""
+	style += prefix
+	style += showCursor
 	applyStyle(style)
 }

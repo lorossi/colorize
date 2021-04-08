@@ -3,6 +3,7 @@ package colorize
 import (
 	"errors"
 	"fmt"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -55,13 +56,13 @@ func createTruecolorString(r, g, b uint8) (style string) {
 
 // finally apply the style
 func applyStyle(style string) (e error) {
-	_, e = fmt.Print(style)
+	_, e = fmt.Fprint(os.Stdout, style)
 	return
 }
 
 // create string to move cursor to xy
 func createCursorXYString(x, y uint8) (style string) {
-	style = fmt.Sprintf("%d;%d;H", y, x)
+	style = fmt.Sprintf("%d;%d;H", y+1, x+1)
 	return
 }
 
